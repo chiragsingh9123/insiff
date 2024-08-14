@@ -1008,8 +1008,8 @@ def make_call_custon(message):
     if row!=None :
         if row[3]!='ban':
             if user_day_check(id)>0:
-                    mes =(message.text).split()
-                    try:
+                        mes =(message.text).split()
+                    # try:
                         number = mes[1]
                         spoof = mes[2]
                         script_id = mes[3]
@@ -1037,8 +1037,8 @@ def make_call_custon(message):
                                 b=custom_make_call(f= f"{spoof}",t=f"{number}",user_id=id,script_id=script_id)
                         else:
                             bot.send_message(message.from_user.id, """*Custom script not found! \n Create First -> /customscript *""",parse_mode='markdown')
-                    except:
-                        bot.send_message(message.from_user.id, f"*Please try again with new script*",parse_mode='markdown')
+                    # except:
+                    #     bot.send_message(message.from_user.id, f"*Please try again with new script*",parse_mode='markdown')
             else:
                    bot.send_message(message.from_user.id, "*⚠️ Buy Subscription ⚠️*",parse_mode='markdown')  
                    delete_data(id) 
