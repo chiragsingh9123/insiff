@@ -1021,6 +1021,8 @@ def make_call_custon(message):
                         c.execute(f"select * from custom_scripts where script_id={script_id} limit 1")
                         custom_sc = c.fetchone()
                         Convert_TTS(custom_sc[3],custom_sc[4],custom_sc[5],custom_sc[6],custom_sc[7],script_id,voice)
+                        if custom_sc==None:
+                            raise ValueError
                         c.execute(f"Select * from users where user_id={id}")
                         row= c.fetchone()
                         call_s1 = row[6]
