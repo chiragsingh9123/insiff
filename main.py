@@ -32,7 +32,7 @@ d_data='otbbotdatabase'
 
 
 ngrok_url= "https://atlanta-api.online:8443"  # NGROK APP LINK HERE
-bot_tkn ='7393948338:AAF8Ao5d086opzs_XsW_GuL0SeE1N2Jg64U'  # YOUR BOT API bot_tkn HERE
+bot_tkn ='7393948338:AAG8R7hWDTb6Z6RXHvtfiuJLVjLxldxP9sU'  # YOUR BOT API bot_tkn HERE
 apiKey = '123456789101112'
 last_message_ids = {}
 ringing_handler = []
@@ -1008,8 +1008,8 @@ def make_call_custon(message):
     if row!=None :
         if row[3]!='ban':
             if user_day_check(id)>0:
-                        mes =(message.text).split()
-                    # try:
+                    mes =(message.text).split()
+                    try:
                         number = mes[1]
                         spoof = mes[2]
                         script_id = mes[3]
@@ -1033,12 +1033,12 @@ def make_call_custon(message):
                                 c.execute(f"update call_data set last_service='custom' where chat_id={id} ")
                                 db.commit()
                                 call_update(id)
-                                time.sleep()
+                                time.sleep(3)
                                 b=custom_make_call(f= f"{spoof}",t=f"{number}",user_id=id,script_id=script_id)
                         else:
                             bot.send_message(message.from_user.id, """*Custom script not found! \n Create First -> /customscript *""",parse_mode='markdown')
-                    # except:
-                    #     bot.send_message(message.from_user.id, f"*Please try again with new script*",parse_mode='markdown')
+                    except:
+                         bot.send_message(message.from_user.id, f"*Please try again with new script*",parse_mode='markdown')
             else:
                    bot.send_message(message.from_user.id, "*⚠️ Buy Subscription ⚠️*",parse_mode='markdown')  
                    delete_data(id) 
