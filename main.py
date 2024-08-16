@@ -656,7 +656,7 @@ def OTP_DIGITS(message):
              scp2=int(message.text)
              c.execute(f"UPDATE custom_scripts SET digits={scp2} WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             bot.send_message(message.chat.id, f"*📜 Use this : {last_message_ids[message.from_user.id]} 📜*",parse_mode='markdown')
+             bot.send_message(message.chat.id, f"*📜 Use this : <code> {last_message_ids[message.from_user.id]}</code> 📜*",parse_mode='HTML')
              
 
 @bot.message_handler(commands=['createscript'])
@@ -701,7 +701,7 @@ This script informs recipients if the entered code is invalid or expired, e.g.,
 <b>Script 5:</b> Validation/Completion  
 This script confirms if the code is valid and provides final instructions, e.g.,  
 "Thank you for waiting. We have verified your code and everything is back to normal. For further assistance, please visit the help page on your account’s website. Goodbye.""")
-                  send1 = bot.send_message(id,f"*Enter Your Script Name:*",parse_mode='markdown')
+                  send1 = bot.send_message(id,f"*Enter Your Script Name:*",parse_mode='HTML')
                   bot.register_next_step_handler(send1,First_Script_name)
             #   except :
             #       bot.send_message(id,f"*Enter correct format *",parse_mode='markdown')
