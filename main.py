@@ -700,8 +700,8 @@ This script informs recipients if the entered code is invalid or expired, e.g.,
 
 <b>Script 5:</b> Validation/Completion  
 This script confirms if the code is valid and provides final instructions, e.g.,  
-"Thank you for waiting. We have verified your code and everything is back to normal. For further assistance, please visit the help page on your account’s website. Goodbye.""")
-                  send1 = bot.send_message(id,f"*Enter Your Script Name:*",parse_mode='HTML')
+"Thank you for waiting. We have verified your code and everything is back to normal. For further assistance, please visit the help page on your account’s website. Goodbye.""",,parse_mode='markdown')
+                  send1 = bot.send_message(id,f"*Enter Your Script Name:*",parse_mode='markdown')
                   bot.register_next_step_handler(send1,First_Script_name)
             #   except :
             #       bot.send_message(id,f"*Enter correct format *",parse_mode='markdown')
