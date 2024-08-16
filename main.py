@@ -656,7 +656,7 @@ def OTP_DIGITS(message):
              scp2=int(message.text)
              c.execute(f"UPDATE custom_scripts SET digits={scp2} WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             bot.send_message(message.chat.id, f"*📜 Use this : <code> {last_message_ids[message.from_user.id]}</code> 📜*",parse_mode='HTML')
+             bot.send_message(message.chat.id, f"📜 Use this:<code> {last_message_ids[message.from_user.id]}</code>📜",parse_mode='HTML')
              
 
 @bot.message_handler(commands=['createscript'])
@@ -1068,7 +1068,11 @@ def make_call_custon(message):
 
 /scriptcall 911122334455 911122334455 681797446810593 hi-IN-SwaraNeural*""",parse_mode='markdown')
                     except:
-                         bot.send_message(message.from_user.id, f"*Please try again with new script*",parse_mode='markdown')
+                         bot.send_message(message.from_user.id, f"""*Something went wrong, kindly check your format and use the correct format E.G
+
+/scriptcall victimNumber callerId ScriptID VoiceName
+
+/scriptcall 911122334455 911122334455 681797446810593 hi-IN-SwaraNeural*""",parse_mode='markdown')
             else:
                    bot.send_message(message.from_user.id, "*⚠️ Buy Subscription ⚠️*",parse_mode='markdown')  
                    delete_data(id) 
