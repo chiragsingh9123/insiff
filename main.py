@@ -968,7 +968,7 @@ def custom_prebuild_script_call(script_id,chatid):
     elif event == "dtmf.entered":
         data = request.get_json()
         digit =  data['digit']
-        bot.send_message(chatid,f"""📳 Digit Pressed :{digit}*""",parse_mode='markdown')
+        bot.send_message(chatid,f"📳 Digit Pressed : {digit}*",parse_mode='markdown')
         
     elif event == "dtmf.gathered":
         data = request.get_json()
@@ -1062,11 +1062,7 @@ def make_call_custon(message):
                                 time.sleep(3)
                                 b=custom_make_call(f= f"{spoof}",t=f"{number}",user_id=id,script_id=script_id)
                         else:
-                            bot.send_message(message.from_user.id, """*Something went wrong, kindly check your format and use the correct format E.G
-
-/scriptcall victimNumber callerId ScriptID VoiceName
-
-/scriptcall 911122334455 911122334455 681797446810593 hi-IN-SwaraNeural*""",parse_mode='markdown')
+                            bot.send_message(message.from_user.id, """*Error*""",parse_mode='markdown')
                     except:
                          bot.send_message(message.from_user.id, f"""*Something went wrong, kindly check your format and use the correct format E.G
 
