@@ -546,7 +546,7 @@ def Voices(message):
         item1 = types.InlineKeyboardButton(text="🇮🇳 Indian", callback_data="/ind")
         item0 = types.InlineKeyboardButton(text="🇺🇸 American", callback_data="/us")
         item2 = types.InlineKeyboardButton(text="🇮🇹 Italian", callback_data="/itl")
-        item3 = types.InlineKeyboardButton(text="🇫🇷 French", callback_data="/us")
+        item3 = types.InlineKeyboardButton(text="🇫🇷 French", callback_data="/fr")
         if cdata!=None:
             item4 = types.InlineKeyboardButton(text="Back", callback_data="/activatedstartback")
         else:
@@ -1147,6 +1147,34 @@ def handle_callback(message):
 16: `ta-IN-ValluvarNeural`
 17: `ur-IN-GulNeural`
 18: `ur-IN-SalmanNeural`""",chat_id=message.from_user.id,message_id=last_message_ids[message.from_user.id],parse_mode='MarkDown',reply_markup=keyboard)
+        
+    elif message.data =='/fr':
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        item1 = types.InlineKeyboardButton(text="🔙", callback_data="/voiceback")
+        keyboard.add(item1)
+    
+        bot.edit_message_caption(caption="""
+`fr-CA-SylvieNeural`
+`fr-CA-JeanNeural`
+`fr-CA-AntoineNeural`
+`fr-CA-ThierryNeural`
+`fr-CH-ArianeNeural`
+`fr-CH-FabriceNeural`
+`fr-FR-DeniseNeural`
+`fr-FR-HenriNeural`
+`fr-FR-AlainNeural`
+`fr-FR-BrigitteNeural`
+`fr-FR-CelesteNeural`
+`fr-FR-ClaudeNeural`
+`fr-FR-CoralieNeural` 
+`fr-FR-EloiseNeural`
+`fr-FR-JacquelineNeural`
+`fr-FR-JeromeNeural`
+`fr-FR-JosephineNeural`
+`fr-FR-MauriceNeural`
+`fr-FR-YvesNeural`
+`fr-FR-YvetteNeural` 
+`fr-FR-LucienMultilingualNeural`""",chat_id=message.from_user.id,message_id=last_message_ids[message.from_user.id],parse_mode='MarkDown',reply_markup=keyboard)
         
     elif message.data =='/us':
         keyboard = types.InlineKeyboardMarkup(row_width=2)
