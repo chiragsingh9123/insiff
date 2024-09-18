@@ -38,8 +38,8 @@ def resample_wav(input_wav_file, output_wav_file, target_rate=8000):
 
 
 def text_to_speech(text, output_wav_file, voice_name,script_id):
-    subscription_key = "a86b6602cbf9436fb9f3a1595e3a39a8"
-    region = "centralindia"
+    subscription_key = "038beaafbc9943baa3229795ac4fd5eb"
+    region = "eastus"
     speech_config = speechsdk.SpeechConfig(subscription=subscription_key, region=region)
     speech_config.speech_synthesis_voice_name = voice_name  # Set the voice name
     audio_config = speechsdk.audio.AudioOutputConfig(filename=f"tempscripts/{script_id}/temp.wav")
