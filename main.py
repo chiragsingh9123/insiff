@@ -33,7 +33,7 @@ d_data='otbbotdatabase'
 
 ngrok_url= "https://atlanta-api.online:8443"  # NGROK APP LINK HERE
 bot_tkn ='7393948338:AAG8R7hWDTb6Z6RXHvtfiuJLVjLxldxP9sU'  # YOUR BOT API bot_tkn HERE
-apiKey = '123456789101112'
+apiKey = '9dacd392-6279-4cd4-8ad1-cc688d4e04f'
 last_message_ids = {}
 ringing_handler = []
 recording_handler = {}
