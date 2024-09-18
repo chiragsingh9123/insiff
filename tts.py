@@ -1,6 +1,6 @@
 import azure.cognitiveservices.speech as speechsdk
 import wave
-from upload2 import *
+from upload import *
 import os
 
 import numpy as np
